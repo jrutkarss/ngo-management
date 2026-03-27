@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateGalleryTable extends Migration
+class CreateProjectsTable extends Migration
 {
     public function up()
     {
@@ -15,25 +15,35 @@ class CreateGalleryTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'image_path' => [
+            'title' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'caption' => [
+            'description' => [
                 'type' => 'TEXT',
+            ],
+            'total_funds_received' => [
+                'type' => 'DECIMAL',
+                'constraint' => [15, 2],
+                'default' => 0,
+            ],
+            'total_expenses' => [
+                'type' => 'DECIMAL',
+                'constraint' => [15, 2],
+                'default' => 0,
+            ],
+            'start_date' => [
+                'type' => 'DATE',
                 'null' => true,
             ],
-            'event_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
+            'end_date' => [
+                'type' => 'DATE',
                 'null' => true,
             ],
-            'uploaded_by' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
-                'null' => true,
+            'status' => [
+                'type' => 'ENUM',
+                'constraint' => ['planning', 'ongoing', 'completed', 'paused'],
+                'default' => 'planning',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -45,11 +55,11 @@ class CreateGalleryTable extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('gallery');
+        $this->forge->createTable('projects');
     }
 
     public function down()
     {
-        $this->forge->dropTable('gallery');
+        $this->forge->dropTable('projects');
     }
 }

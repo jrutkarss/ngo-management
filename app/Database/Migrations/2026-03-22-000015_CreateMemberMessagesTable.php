@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateGalleryTable extends Migration
+class CreateMemberMessagesTable extends Migration
 {
     public function up()
     {
@@ -15,25 +15,20 @@ class CreateGalleryTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'image_path' => [
+            'title' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'caption' => [
+            'message' => [
                 'type' => 'TEXT',
-                'null' => true,
             ],
-            'event_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
-                'null' => true,
+            'sent_by_admin' => [
+                'type' => 'BOOLEAN',
+                'default' => true,
             ],
-            'uploaded_by' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
-                'null' => true,
+            'send_to_all' => [
+                'type' => 'BOOLEAN',
+                'default' => false,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -45,11 +40,11 @@ class CreateGalleryTable extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('gallery');
+        $this->forge->createTable('member_messages');
     }
 
     public function down()
     {
-        $this->forge->dropTable('gallery');
+        $this->forge->dropTable('member_messages');
     }
 }

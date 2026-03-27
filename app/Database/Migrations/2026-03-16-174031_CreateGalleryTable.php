@@ -44,7 +44,6 @@ class CreateGalleryTable extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addPrimaryKey('id');
         $this->forge->createTable('gallery');
     }
 

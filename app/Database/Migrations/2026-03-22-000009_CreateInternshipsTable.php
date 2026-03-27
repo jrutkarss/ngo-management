@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateGalleryTable extends Migration
+class CreateInternshipsTable extends Migration
 {
     public function up()
     {
@@ -15,25 +15,38 @@ class CreateGalleryTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'image_path' => [
+            'title' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'caption' => [
+            'description' => [
                 'type' => 'TEXT',
-                'null' => true,
             ],
-            'event_id' => [
+            'duration_weeks' => [
                 'type' => 'INT',
                 'constraint' => 11,
-                'unsigned' => true,
-                'null' => true,
             ],
-            'uploaded_by' => [
+            'positions_available' => [
                 'type' => 'INT',
                 'constraint' => 11,
-                'unsigned' => true,
+            ],
+            'start_date' => [
+                'type' => 'DATE',
+            ],
+            'stipend' => [
+                'type' => 'DECIMAL',
+                'constraint' => [10, 2],
                 'null' => true,
+            ],
+            'image_path' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
+            'status' => [
+                'type' => 'ENUM',
+                'constraint' => ['open', 'closed', 'ongoing', 'completed'],
+                'default' => 'open',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -45,11 +58,11 @@ class CreateGalleryTable extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('gallery');
+        $this->forge->createTable('internships');
     }
 
     public function down()
     {
-        $this->forge->dropTable('gallery');
+        $this->forge->dropTable('internships');
     }
 }

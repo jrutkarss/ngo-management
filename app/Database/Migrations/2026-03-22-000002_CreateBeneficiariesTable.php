@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateGalleryTable extends Migration
+class CreateBeneficiariesTable extends Migration
 {
     public function up()
     {
@@ -15,24 +15,39 @@ class CreateGalleryTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'image_path' => [
+            'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'caption' => [
+            'email' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
+            'phone' => [
+                'type' => 'VARCHAR',
+                'constraint' => 20,
+                'null' => true,
+            ],
+            'address' => [
                 'type' => 'TEXT',
+            ],
+            'location' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
                 'null' => true,
             ],
-            'event_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
+            'date_of_birth' => [
+                'type' => 'DATE',
                 'null' => true,
             ],
-            'uploaded_by' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
+            'category' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
+            'assistance_details' => [
+                'type' => 'JSON',
                 'null' => true,
             ],
             'created_at' => [
@@ -45,11 +60,11 @@ class CreateGalleryTable extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('gallery');
+        $this->forge->createTable('beneficiaries');
     }
 
     public function down()
     {
-        $this->forge->dropTable('gallery');
+        $this->forge->dropTable('beneficiaries');
     }
 }

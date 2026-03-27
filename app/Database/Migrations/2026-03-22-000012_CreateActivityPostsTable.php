@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateGalleryTable extends Migration
+class CreateActivityPostsTable extends Migration
 {
     public function up()
     {
@@ -15,21 +15,14 @@ class CreateGalleryTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
+            'caption' => [
+                'type' => 'TEXT',
+            ],
             'image_path' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'caption' => [
-                'type' => 'TEXT',
-                'null' => true,
-            ],
-            'event_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
-                'null' => true,
-            ],
-            'uploaded_by' => [
+            'posted_by' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
@@ -45,11 +38,11 @@ class CreateGalleryTable extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('gallery');
+        $this->forge->createTable('activity_posts');
     }
 
     public function down()
     {
-        $this->forge->dropTable('gallery');
+        $this->forge->dropTable('activity_posts');
     }
 }

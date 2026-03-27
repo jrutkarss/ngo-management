@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateDonationsTable extends Migration
+class CreateReceiptsTable extends Migration
 {
     public function up()
     {
@@ -14,6 +14,16 @@ class CreateDonationsTable extends Migration
                 'constraint' => 11,
                 'unsigned' => true,
                 'auto_increment' => true,
+            ],
+            'receipt_number' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+                'unique' => true,
+            ],
+            'type' => [
+                'type' => 'ENUM',
+                'constraint' => ['membership', 'donation', 'event', '80g', 'custom'],
+                'default' => 'donation',
             ],
             'member_id' => [
                 'type' => 'INT',
@@ -29,60 +39,26 @@ class CreateDonationsTable extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'donor_phone' => [
-                'type' => 'VARCHAR',
-                'constraint' => 20,
-                'null' => true,
-            ],
             'amount' => [
                 'type' => 'DECIMAL',
                 'constraint' => [12, 2],
-            ],
-            'type' => [
-                'type' => 'ENUM',
-                'constraint' => ['online', 'cash', 'bank_transfer', 'upi', 'custom'],
-                'default' => 'online',
             ],
             'purpose' => [
                 'type' => 'TEXT',
                 'null' => true,
             ],
-            'campaign_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
-                'null' => true,
-            ],
-            'payment_gateway' => [
+            'payment_method' => [
                 'type' => 'VARCHAR',
-                'constraint' => 50,
+                'constraint' => 100,
                 'null' => true,
-            ],
-            'transaction_id' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => true,
-                'unique' => true,
-            ],
-            'status' => [
-                'type' => 'ENUM',
-                'constraint' => ['pending', 'success', 'failed', 'refunded'],
-                'default' => 'pending',
             ],
             'receipt_path' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-                'null' => true,
             ],
-            '80g_receipt_path' => [
+            'qr_code_path' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-                'null' => true,
-            ],
-            'referral_member_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
                 'null' => true,
             ],
             'created_at' => [
@@ -94,11 +70,13 @@ class CreateDonationsTable extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->createTable('donations');
+        $this->forge->addPrimaryKey('id');
+        $this->forge->addForeignKey('member_id', 'members', 'id', 'SET NULL', 'SET NULL');
+        $this->forge->createTable('receipts');
     }
 
     public function down()
     {
-        $this->forge->dropTable('donations');
+        $this->forge->dropTable('receipts');
     }
 }

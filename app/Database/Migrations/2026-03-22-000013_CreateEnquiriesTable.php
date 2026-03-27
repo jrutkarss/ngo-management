@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateGalleryTable extends Migration
+class CreateEnquiriesTable extends Migration
 {
     public function up()
     {
@@ -15,24 +15,38 @@ class CreateGalleryTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'image_path' => [
+            'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'caption' => [
+            'email' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+            ],
+            'phone' => [
+                'type' => 'VARCHAR',
+                'constraint' => 20,
+                'null' => true,
+            ],
+            'message' => [
+                'type' => 'TEXT',
+            ],
+            'subject' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
+            'status' => [
+                'type' => 'ENUM',
+                'constraint' => ['new', 'responded', 'closed'],
+                'default' => 'new',
+            ],
+            'admin_response' => [
                 'type' => 'TEXT',
                 'null' => true,
             ],
-            'event_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
-                'null' => true,
-            ],
-            'uploaded_by' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
+            'response_date' => [
+                'type' => 'DATETIME',
                 'null' => true,
             ],
             'created_at' => [
@@ -45,11 +59,11 @@ class CreateGalleryTable extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('gallery');
+        $this->forge->createTable('enquiries');
     }
 
     public function down()
     {
-        $this->forge->dropTable('gallery');
+        $this->forge->dropTable('enquiries');
     }
 }

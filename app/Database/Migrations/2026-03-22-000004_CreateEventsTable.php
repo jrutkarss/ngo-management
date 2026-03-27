@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateGalleryTable extends Migration
+class CreateEventsTable extends Migration
 {
     public function up()
     {
@@ -15,25 +15,40 @@ class CreateGalleryTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'image_path' => [
+            'title' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'caption' => [
+            'description' => [
                 'type' => 'TEXT',
+            ],
+            'event_date' => [
+                'type' => 'DATETIME',
+            ],
+            'location' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
                 'null' => true,
             ],
-            'event_id' => [
+            'registration_fee' => [
+                'type' => 'DECIMAL',
+                'constraint' => [10, 2],
+                'default' => 0,
+            ],
+            'max_participants' => [
                 'type' => 'INT',
                 'constraint' => 11,
-                'unsigned' => true,
                 'null' => true,
             ],
-            'uploaded_by' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
+            'image_path' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
                 'null' => true,
+            ],
+            'status' => [
+                'type' => 'ENUM',
+                'constraint' => ['upcoming', 'ongoing', 'completed', 'cancelled'],
+                'default' => 'upcoming',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -45,11 +60,11 @@ class CreateGalleryTable extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('gallery');
+        $this->forge->createTable('events');
     }
 
     public function down()
     {
-        $this->forge->dropTable('gallery');
+        $this->forge->dropTable('events');
     }
 }
