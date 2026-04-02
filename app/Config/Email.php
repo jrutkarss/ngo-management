@@ -10,25 +10,34 @@ class Email extends BaseConfig
     public string $fromName   = '';
     public string $recipients = '';
 
-    /**
-     * The "user agent"
-     */
-    public string $userAgent = 'CodeIgniter';
+        public function __construct()
+        {
+            parent::__construct();
+            
+            // Load email settings from environment
+            $this->fromEmail = env('MAIL_FROM_ADDRESS', 'noreply@ngo.org');
+            $this->fromName = env('MAIL_FROM_NAME', 'Jan Prakrati Seva Trust');
+            $this->protocol = env('MAIL_PROTOCOL', 'smtp');
+            $this->SMTPHost = env('MAIL_HOST', 'smtp.gmail.com');
+            $this->SMTPUser = env('MAIL_USERNAME', '');
+            $this->SMTPPass = env('MAIL_PASSWORD', '');
+            $this->SMTPPort = (int) env('MAIL_PORT', 587);
+            $this->SMTPCrypto = env('MAIL_ENCRYPTION', 'tls');
+        }
 
-    /**
-     * The mail sending protocol: mail, sendmail, smtp
-     */
-    public string $protocol = 'mail';
+        /**
+         * The "user agent"
+         */
+        public string $userAgent = 'CodeIgniter';
 
-    /**
-     * The server path to Sendmail.
-     */
-    public string $mailPath = '/usr/sbin/sendmail';
-
+        /**
+         * The mail sending protocol: mail, sendmail, smtp
+         */
+        public string $protocol = 'smtp';
     /**
      * SMTP Server Hostname
      */
-    public string $SMTPHost = '';
+    public string $SMTPHost = 'smtp.gmail.com';
 
     /**
      * Which SMTP authentication method to use: login, plain
@@ -48,7 +57,7 @@ class Email extends BaseConfig
     /**
      * SMTP Port
      */
-    public int $SMTPPort = 25;
+    public int $SMTPPort = 587;
 
     /**
      * SMTP Timeout (in seconds)
@@ -82,7 +91,7 @@ class Email extends BaseConfig
     /**
      * Type of mail, either 'text' or 'html'
      */
-    public string $mailType = 'text';
+    public string $mailType = 'html';
 
     /**
      * Character set (utf-8, iso-8859-1, etc.)

@@ -1,0 +1,149 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    background-color: wheat;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.wrapper_form1{
+    background-color: white;
+    width: 500px;
+    padding: 25px;
+    margin: 25px auto 0px;
+    box-shadow: 0px 0px 20px rgb(80, 48, 22);
+}
+.wrapper_form1 h2{
+    background-color: rgb(245, 240, 235);
+    padding: 20px;
+    text-align: center;
+    border: 2px dotted brown;
+    margin:10px;
+    color:brown;
+}
+h4{
+    padding-bottom: 5px;
+    color: brown;
+}
+.input_group{
+    margin-bottom:8px ;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding:5px 0;
+}
+.input_box{
+    width:100%;
+    margin-right: 12px;
+    position: relative;
+}
+.input_box:last-child{
+    margin-right: 0;
+}
+.name{
+    padding: 14px 10px 14px 50px;
+    width: 100%;
+    background-color: rgb(250, 244, 239);
+    border:1px solid black;
+    outline: none;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    border-radius: 3px;
+    color:gray
+}
+.name:focus, .dob:focus{
+    -webkit-box-shadow: 0 0 2px 1px brown;
+    -moz-box-shadow:0 0 2px 1px green;
+    box-shadow: 0 0 2px 1px green;
+    border:1px solid green;
+}
+.dob{
+    width: 30%;
+    padding: 14px;
+    text-align: center;
+    background-color: rgb(250, 244, 239);
+    transition: 0.3s;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.radio{
+    display: none;
+}
+.input_box label{
+    border:1px solid black;
+    width: 50%;
+    padding: 13px;
+    float:left;
+    background-color: rgb(250, 244, 239);
+    border: 1px solid black;
+    display: inline-block;
+    text-align: center;
+}
+.input_box label:first-of-type{
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-right: none;
+}
+.input_box label:last-of-type{
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.radio:checked + label{
+    background-color: burlywood;
+    color: cornsilk;
+}
+.input_box select{
+    display: inline-block;
+    width: 50%;
+    background-color: rgb(250, 244, 239);
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 11px;
+}
+.input_box select:focus{
+    background-color: burlywood;
+    color: cornsilk;
+    text-align: center;
+}
+button{
+    width: 100%;
+    background: transparent;
+    border: 1px solid black;
+    background-color: burlywood;
+    color: cornsilk;
+    padding: 15px;
+    border-radius: 3px;
+    font-size: 16px;
+    transition: all 0.35s ease;
+}
+button:hover{
+    cursor: pointer;
+    background: rgb(250, 244, 239);
+    color: gray;
+}
+.input_box .icon{
+    width: 48px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    color:black;
+    background-color: indianred;
+    border-radius: 2px 0 0 2px;
+    transition: 0.3s;
+    font-size: 20px;
+    pointer-events: none;
+    border: 1px solid black;
+    border-right: none;
+}

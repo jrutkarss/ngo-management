@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= esc($title ?? 'Jan Prakrati Seva Trust') ?> | NGO</title>
-     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Open+Sans:wght@400;500;700&display=swap');
+        body { font-family: 'Inter', sans-serif; 
+    overflow-x: hidden; }
+        .logo { transition: transform 0.3s ease; }
+        .logo:hover { transform: rotate(360deg) scale(1.1); }
     </style>
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -43,206 +47,303 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Open+Sans:wght@400;500;700&display=swap');
-        
         .hero-bg {
             background-image: 
                 linear-gradient(rgba(248, 249, 250, 0.7), rgba(248, 249, 250, 0.3)),
-                url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80');
+                url('/img_gal/image8.jpeg');
             background-position: center;
             background-size: cover;
             background-attachment: fixed;
         }
-        
-        .text-shadow {
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .card-shadow {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+        .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .card-shadow { box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body class="font-sans bg-cream text-text-dark">
-    <!-- Navigation -->
-
-    <nav class="bg-white/90 backdrop-blur-sm fixed w-full z-50 border-b border-leaf/20 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-center h-20">
-                <img src="/jan_prakarti.png" alt="NGO Logo" class="h-12 logo">
-                <a href="/" class="font-display text-2xl text-moss">Jan Prakrati Seva Trust</a>
-                
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="/" class="text-sm font-medium text-text-dark hover:text-leaf transition-colors">Home</a>
-                    <a href="/donate" class="text-sm font-medium text-text-dark hover:text-leaf transition-colors">Donate</a>
-                    <a href="/about" class="text-sm font-medium text-text-dark hover:text-leaf transition-colors">About Us</a>
-                    <a href="/contact" class="text-sm font-medium text-text-dark hover:text-leaf transition-colors">Contact</a>
-                    <a href="/member/login" class="px-4 py-2 bg-leaf text-white rounded-full text-sm font-medium hover:bg-moss transition-colors">Sign In</a>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden">
+        <div class="fixed right-0 top-0 h-full w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-8">
+                    <div class="flex items-center space-x-3">
+                        <img src="/jan_prakarti.png" alt="NGO Logo" class="h-12">
+                        <span class="font-display text-xl text-moss">Jan Prakrati</span>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="text-2xl text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
                 
-                <button class="md:hidden p-2 text-text-dark hover:text-leaf transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-  
-    <!-- Main Content -->
-    <main class="pt-4 pb-20">
-        <?= $this->renderSection('content') ?>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-[#1A1D2B]">
-    <div class="container mx-auto p-0 md:p-8 xl:px-0">
-        <div class="mx-auto max-w-7xl px-6 pb-10 pt-16">
-            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <!-- Mobile Navigation Links -->
                 <div class="space-y-4">
-                    <div>
-                        <a href="/">
-                            <div class="flex items-center space-x-2 text-2xl font-medium">
-                                <span>
-                                    <img src="/jan_prakarti.png" alt="AI Logo"
-                                        width="64" height="64" class="w-16">
-                                </span>
-                                <span class="text-white">Jan Prakrati Seva Trust</span>
-                            </div>
-
-                        </a>
-                    </div>
-                    <div class="max-w-md pr-16 text-md text-gray-200">Jan Prakriti Seva Trust is a social and service-oriented organization established with the objectives of social service, cow welfare, and environmental conservation. Through various social initiatives, the organization works to raise public awareness and provide assistance to those in need.
-The organization periodically organizes social events, public awareness campaigns, and service activities to foster a positive and inspiring atmosphere within society.
-                    </div>
-                    <div class="flex space-x-2">
-                        <a href="/" target="_blank" class="text-gray-200 hover:text-gray-200">
-                            <span class="sr-only">Linkedin</span><svg fill="currentColor" viewBox="0 0 24 24"
-                                class="h-6 w-6" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                        <a href="" target="_blank" class="text-gray-200 hover:text-gray-200">
-                            <span class="sr-only">Twitter</span><svg fill="currentColor" viewBox="0 0 24 24"
-                                class="h-6 w-6" aria-hidden="true">
-                                <path
-                                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
-                                </path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-                    <div class="md:grid md:grid-cols-2 md:gap-8">
-                        <div>
-                            <h3 class="text-md font-semibold leading-6 text-white">Our Solutions</h3>
-                            <ul role="list" class="mt-6 space-y-4">
-                                <li>
-                                    <a href="/"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Transfromation
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Membership Benefits
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Events and Campaigns
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="mt-10 md:mt-0">
-                            <h3 class="text-md font-semibold leading-6 text-white">Use Cases</h3>
-                            <ul role="list" class="mt-6 space-y-4">
-                                <li>
-                                    <a href="/"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50"> Newsletters and
-                                        Analysis
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Social Experience
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/automation"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Donate Now
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="md:grid md:grid-cols-2 md:gap-8">
-                        <div>
-                            <h3 class="text-md font-semibold leading-6 text-white">Resources</h3>
-                            <ul role="list" class="mt-6 space-y-4">
-                                <li>
-                                    <a href="/gallery"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Gallery
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/blog" class="text-md leading-6 text-gray-300 hover:text-gray-50">Blog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/casestudies"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Case Studies
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/terms" class="text-md leading-6 text-gray-300 hover:text-gray-50">Terms
-                                        of Service
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/privacy"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Privacy Policy
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="mt-10 md:mt-0">
-                            <h3 class="text-md font-semibold leading-6 text-white">Company</h3>
-                            <ul role="list" class="mt-6 space-y-4">
-                                <li>
-                                    <a href="/aboutus"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">About Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/careers"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Careers
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/contactus"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Contact Us
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-16 border-t border-gray-400/30 pt-8 sm:mt-20 lg:mt-24">
-                <div class="text-md text-center text-white">
-                    Copyright © 2024 . Crafted with
-                    <span class="text-gray-50">♥</span> by
-                    <a rel="noopener" href="/">Innova Bharat.
+                    <a href="/" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
+                        <i class="fas fa-home mr-3"></i>Home
                     </a>
+                    <a href="/about" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
+                        <i class="fas fa-info-circle mr-3"></i>About
+                    </a>
+                    <a href="/objectives" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
+                        <i class="fas fa-bullseye mr-3"></i>Objectives
+                    </a>
+                    <a href="/president" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
+                        <i class="fas fa-user-tie mr-3"></i>President
+                    </a>
+                    <a href="/team" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
+                        <i class="fas fa-users mr-3"></i>Team
+                    </a>
+                    <a href="/events" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
+                        <i class="fas fa-calendar-alt mr-3"></i>Events
+                    </a>
+                    <a href="/activity" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
+                        <i class="fas fa-tasks mr-3"></i>Activities
+                    </a>
+                    <a href="/gallery" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
+                        <i class="fas fa-images mr-3"></i>Gallery
+                    </a>
+                    <a href="/videos" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
+                        <i class="fas fa-video mr-3"></i>Videos
+                    </a>
+                    <a href="/donate" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
+                        <i class="fas fa-heart mr-3"></i>Donate
+                    </a>
+                </div>
+
+                <!-- Mobile Auth Links -->
+                <div class="mt-8 pt-8 border-t border-gray-200">
+                    <?php if (session()->get('isLoggedIn')): ?>
+                        <a href="/member/dashboard" class="block w-full py-4 px-6 bg-leaf text-white rounded-xl text-lg font-semibold mb-4 flex items-center justify-center space-x-2 hover:bg-moss transition-all">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="/logout" class="block w-full py-3 px-4 text-lg font-medium text-earth hover:text-moss border border-earth rounded-xl hover:bg-earth/10 transition-all text-center">
+                            Logout
+                        </a>
+                    <?php else: ?>
+                        <a href="/member/login" class="block w-full py-3 px-4 text-lg font-semibold text-leaf bg-leaf/10 border-2 border-leaf rounded-xl hover:bg-leaf hover:text-white transition-all mb-3 text-center">
+                            Sign In
+                        </a>
+                        <a href="/member/register" class="block w-full py-3 px-4 text-lg font-semibold bg-blossom text-white border-2 border-blossom rounded-xl hover:bg-earth hover:border-earth transition-all text-center">
+                            Sign Up
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
-</footer>
+
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-sm fixed w-full z-50 border-b border-leaf/20 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="/jan_prakarti.png" alt="NGO Logo" class="h-12 logo">
+                    <a href="/" class="font-display text-2xl text-moss hidden sm:block">Jan Prakrati Seva Trust</a>
+                    <a href="/" class="font-display text-xl text-moss sm:hidden">Jan Prakrati</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex space-x-1 xl:space-x-2 2xl:space-x-4 items-center">
+                    <a href="/" class="text-sm font-medium text-text-dark hover:text-leaf px-3 py-2 rounded-lg transition-all hover:bg-leaf/10" title="Home">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    <a href="/about" class="text-sm font-medium text-text-dark hover:text-leaf px-3 py-2 rounded-lg transition-all hover:bg-leaf/10" title="About">About</a>
+                    <a href="/objectives" class="text-sm font-medium text-text-dark hover:text-leaf px-3 py-2 rounded-lg transition-all hover:bg-leaf/10" title="Objectives">Objectives</a>
+                    <a href="/president" class="text-sm font-medium text-text-dark hover:text-leaf px-3 py-2 rounded-lg transition-all hover:bg-leaf/10" title="President">President</a>
+                    <a href="/team" class="text-sm font-medium text-text-dark hover:text-leaf px-3 py-2 rounded-lg transition-all hover:bg-leaf/10" title="Team">Team</a>
+                    <a href="/events" class="text-sm font-medium text-text-dark hover:text-leaf px-3 py-2 rounded-lg transition-all hover:bg-leaf/10" title="Events">Events</a>
+                    <a href="/gallery" class="text-sm font-medium text-text-dark hover:text-leaf px-3 py-2 rounded-lg transition-all hover:bg-leaf/10" title="Gallery">Gallery</a>
+                    <a href="/donate" class="text-sm font-medium text-text-dark hover:text-leaf px-3 py-2 rounded-lg transition-all hover:bg-leaf/10" title="Donate">Donate</a>
+                </div>
+                
+                <!-- Auth Buttons & Mobile Menu -->
+                <div class="flex items-center space-x-2">
+                    <?php if (session()->get('isLoggedIn')): ?>
+                        <a href="/member/dashboard" 
+                           class="hidden md:inline-flex px-4 py-2 bg-leaf text-white rounded-full text-sm font-semibold hover:bg-moss transition-all duration-200 items-center space-x-2 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="/logout" 
+                           class="hidden sm:inline-flex px-4 py-2 bg-red-500 text-white rounded-full text-sm font-semibold hover:bg-red-600 transition-all duration-200 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    <?php else: ?>
+                        <a href="/member/login" 
+                           class="hidden md:inline-flex px-4 py-2 bg-leaf text-white rounded-full text-sm font-semibold hover:bg-moss transition-all duration-200 mr-2 shadow-lg hover:shadow-xl">
+                            Sign In
+                        </a>
+                        <a href="/member/register" 
+                           class="hidden sm:inline-flex px-4 py-2 bg-blossom text-white rounded-full text-sm font-semibold hover:bg-earth transition-all duration-200 shadow-lg hover:shadow-xl">
+                            Sign Up
+                        </a>
+                    <?php endif; ?>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-text-dark hover:text-leaf transition-colors rounded-lg hover:bg-leaf/10">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-15 pb-20">
+        <?= $this->renderSection('content') ?>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#1A1D2B] text-white">
+        <div class="container mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Logo & Description -->
+                <div class="space-y-6">
+                    <a href="/" class="flex items-center space-x-3">
+                        <img src="/jan_prakarti.png" alt="NGO Logo" class="w-16 h-16">
+                        <span class="text-2xl font-bold text-white">Jan Prakrati Seva Trust</span>
+                    </a>
+                    <p class="text-gray-300 leading-relaxed">
+                        Social service, cow welfare, and environmental conservation organization. Raising awareness and helping those in need through various initiatives.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-all">
+                            <i class="fab fa-linkedin text-gray-300"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-all">
+                            <i class="fab fa-twitter text-gray-300"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-all">
+                            <i class="fab fa-facebook text-gray-300"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6 flex items-center space-x-2">
+                        <i class="fas fa-link text-leaf"></i>
+                        <span>Quick Links</span>
+                    </h3>
+                    <ul class="space-y-3">
+                        <li><a href="/about" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-2">
+                            <i class="fas fa-chevron-right w-4"></i>
+                            <span>About Us</span>
+                        </a></li>
+                        <li><a href="/objectives" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-2">
+                            <i class="fas fa-chevron-right w-4"></i>
+                            <span>Objectives</span>
+                        </a></li>
+                        <li><a href="/president" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-2">
+                            <i class="fas fa-chevron-right w-4"></i>
+                            <span>President</span>
+                        </a></li>
+                        <li><a href="/team" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-2">
+                            <i class="fas fa-chevron-right w-4"></i>
+                            <span>Team</span>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Activities -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6 flex items-center space-x-2">
+                        <i class="fas fa-calendar-check text-leaf"></i>
+                        <span>Activities</span>
+                    </h3>
+                    <ul class="space-y-3">
+                        <li><a href="/events" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-2">
+                            <i class="fas fa-chevron-right w-4"></i>
+                            <span>Events</span>
+                        </a></li>
+                        <li><a href="/activity" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-2">
+                            <i class="fas fa-chevron-right w-4"></i>
+                            <span>Activities</span>
+                        </a></li>
+                        <li><a href="/gallery" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-2">
+                            <i class="fas fa-chevron-right w-4"></i>
+                            <span>Gallery</span>
+                        </a></li>
+                        <li><a href="/videos" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-2">
+                            <i class="fas fa-chevron-right w-4"></i>
+                            <span>Videos</span>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Member Actions -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6 flex items-center space-x-2">
+                        <i class="fas fa-user-circle text-leaf"></i>
+                        <span>Members</span>
+                    </h3>
+                    <?php if (session()->get('isLoggedIn')): ?>
+                        <div class="space-y-3">
+                            <a href="/member/dashboard" class="block w-full bg-leaf text-white py-3 px-4 rounded-lg text-center font-semibold hover:bg-moss transition-all flex items-center justify-center space-x-2">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>My Dashboard</span>
+                            </a>
+                            <a href="/donate" class="block w-full border-2 border-gray-600 text-gray-300 py-3 px-4 rounded-lg text-center hover:bg-gray-800 hover:border-gray-500 hover:text-white transition-all">
+                                Donate Now
+                            </a>
+                        </div>
+                    <?php else: ?>
+                        <ul class="space-y-3">
+                            <li><a href="/member/register" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-2">
+                                <i class="fas fa-chevron-right w-4"></i>
+                                <span>Join Us</span>
+                            </a></li>
+                            <li><a href="/member/login" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-2">
+                                <i class="fas fa-chevron-right w-4"></i>
+                                <span>Member Login</span>
+                            </a></li>
+                        </ul>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-gray-700 pt-8 mt-12">
+                <div class="text-center text-gray-400">
+                    © 2024 Jan Prakrati Seva Trust. Crafted with <span class="text-red-400">♥</span> by <a href="#" class="hover:text-white font-semibold">Innova Bharat</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            if (!menu.classList.contains('hidden')) {
+                document.body.style.overflow = 'hidden';
+                menu.querySelector('.translate-x-full').classList.remove('translate-x-full');
+            } else {
+                document.body.style.overflow = 'auto';
+                menu.querySelector('.translate-x-full').classList.add('translate-x-full');
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobile-menu');
+            const menuButton = event.target.closest('button[onclick="toggleMobileMenu()"]');
+            if (menu.classList.contains('hidden') === false && !menu.contains(event.target) && !menuButton) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

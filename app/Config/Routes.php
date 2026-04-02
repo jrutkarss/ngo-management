@@ -31,6 +31,10 @@ $routes->get('member/login', 'Auth::memberLogin');
 $routes->post('member/login', 'Auth::processLogin');
 $routes->get('member/register', 'Auth::register');
 $routes->post('member/register', 'Auth::processRegister');
+$routes->get('forgot-password', 'Auth::forgotPassword');
+$routes->post('forgot-password', 'Auth::processForgotPassword');
+$routes->get('reset-password/(:any)', 'Auth::resetPassword/$1');
+$routes->post('reset-password', 'Auth::processResetPassword');
 $routes->get('logout', 'Auth::logout');
 
 // Donation routes

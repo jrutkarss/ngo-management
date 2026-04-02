@@ -6,13 +6,48 @@
         <div class="bg-white p-10 rounded-3xl shadow-lg">
             <h1 class="text-3xl font-bold mb-6">Join as a Member</h1>
 
+            <?php if (session()->getFlashdata('error')): ?>
+                <div class="mb-4 p-4 rounded-xl bg-red-50 text-red-700"><?= esc(session()->getFlashdata('error')) ?></div>
+            <?php endif; ?>
+
+            <?php if (session()->getFlashdata('success')): ?>
+                <div class="mb-4 p-4 rounded-xl bg-green-50 text-green-700"><?= esc(session()->getFlashdata('success')) ?></div>
+            <?php endif; ?>
+
             <form action="<?= base_url('/member/register') ?>" method="post" class="space-y-4">
-                <input type="text" name="name" placeholder="Full Name" class="w-full p-4 rounded-xl border border-gray-200" required>
-                <input type="email" name="email" placeholder="Email" class="w-full p-4 rounded-xl border border-gray-200" required>
-                <input type="text" name="phone" placeholder="Phone" class="w-full p-4 rounded-xl border border-gray-200" required>
-                <input type="text" name="address" placeholder="Address" class="w-full p-4 rounded-xl border border-gray-200" required>
-                <input type="password" name="password" placeholder="Password" class="w-full p-4 rounded-xl border border-gray-200" required>
-                <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-xl font-semibold">Create Account</button>
+                <?= csrf_field() ?>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                    <input type="text" name="name" placeholder="Enter your full name" class="w-full p-4 rounded-xl border border-gray-200" required>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                    <input type="email" name="email" placeholder="Enter your email" class="w-full p-4 rounded-xl border border-gray-200" required>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                    <input type="text" name="phone" placeholder="Enter your phone number" class="w-full p-4 rounded-xl border border-gray-200">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Address</label>
+                    <input type="text" name="address" placeholder="Enter your address" class="w-full p-4 rounded-xl border border-gray-200">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password * (Min 6 characters)</label>
+                    <input type="password" name="password" placeholder="Enter a secure password" class="w-full p-4 rounded-xl border border-gray-200" required minlength="6">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password *</label>
+                    <input type="password" name="confirm_password" placeholder="Re-enter your password" class="w-full p-4 rounded-xl border border-gray-200" required minlength="6">
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-xl font-semibold hover:shadow-lg transition-shadow">Create Account</button>
             </form>
 
             <div class="mt-6 text-center text-sm text-gray-500">
