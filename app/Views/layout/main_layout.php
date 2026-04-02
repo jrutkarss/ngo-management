@@ -77,7 +77,7 @@
                     <a href="/donate" class="text-sm font-medium text-text-dark hover:text-leaf transition-colors">Donate</a>
                     <a href="/about" class="text-sm font-medium text-text-dark hover:text-leaf transition-colors">About Us</a>
                     <a href="/contact" class="text-sm font-medium text-text-dark hover:text-leaf transition-colors">Contact</a>
-                    <a href="/login" class="px-4 py-2 bg-leaf text-white rounded-full text-sm font-medium hover:bg-moss transition-colors">Sign In</a>
+                    <a href="/member/login" class="px-4 py-2 bg-leaf text-white rounded-full text-sm font-medium hover:bg-moss transition-colors">Sign In</a>
                 </div>
                 
                 <button class="md:hidden p-2 text-text-dark hover:text-leaf transition-colors">
@@ -106,19 +106,19 @@
                         <a href="/">
                             <div class="flex items-center space-x-2 text-2xl font-medium">
                                 <span>
-                                    <img src="https://www.svgrepo.com/show/452102/slack.svg" alt="AI Logo"
+                                    <img src="/jan_prakarti.png" alt="AI Logo"
                                         width="64" height="64" class="w-16">
                                 </span>
-                                <span class="text-white">AIOps</span>
+                                <span class="text-white">Jan Prakrati Seva Trust</span>
                             </div>
 
                         </a>
                     </div>
-                    <div class="max-w-md pr-16 text-md text-gray-200">Enhance productivity and
-                        efficiency with cutting-edge artificial intelligence solutions for your business operations.
+                    <div class="max-w-md pr-16 text-md text-gray-200">Jan Prakriti Seva Trust is a social and service-oriented organization established with the objectives of social service, cow welfare, and environmental conservation. Through various social initiatives, the organization works to raise public awareness and provide assistance to those in need.
+The organization periodically organizes social events, public awareness campaigns, and service activities to foster a positive and inspiring atmosphere within society.
                     </div>
                     <div class="flex space-x-2">
-                        <a href="" target="_blank" class="text-gray-200 hover:text-gray-200">
+                        <a href="/" target="_blank" class="text-gray-200 hover:text-gray-200">
                             <span class="sr-only">Linkedin</span><svg fill="currentColor" viewBox="0 0 24 24"
                                 class="h-6 w-6" aria-hidden="true">
                                 <path fill-rule="evenodd"
@@ -142,19 +142,18 @@
                             <h3 class="text-md font-semibold leading-6 text-white">Our Solutions</h3>
                             <ul role="list" class="mt-6 space-y-4">
                                 <li>
-                                    <a href="/aiplatform"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">AI Platform
+                                    <a href="/"
+                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Transfromation
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/aialgorithms"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">AI Algorithms
+                                    <a href="/"
+                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Membership Benefits
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/industryapplications"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Industry
-                                        Applications
+                                    <a href="/"
+                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Events and Campaigns
                                     </a>
                                 </li>
                             </ul>
@@ -163,20 +162,19 @@
                             <h3 class="text-md font-semibold leading-6 text-white">Use Cases</h3>
                             <ul role="list" class="mt-6 space-y-4">
                                 <li>
-                                    <a href="/predictiveanalysis"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Predictive
+                                    <a href="/"
+                                        class="text-md leading-6 text-gray-300 hover:text-gray-50"> Newsletters and
                                         Analysis
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/customerexperience"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Customer
-                                        Experience
+                                    <a href="/"
+                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Social Experience
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/automation"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Automation
+                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Donate Now
                                     </a>
                                 </li>
                             </ul>
@@ -187,8 +185,8 @@
                             <h3 class="text-md font-semibold leading-6 text-white">Resources</h3>
                             <ul role="list" class="mt-6 space-y-4">
                                 <li>
-                                    <a href="/pricing"
-                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Pricing
+                                    <a href="/gallery"
+                                        class="text-md leading-6 text-gray-300 hover:text-gray-50">Gallery
                                     </a>
                                 </li>
                                 <li>
@@ -238,7 +236,7 @@
             <div class="mt-16 border-t border-gray-400/30 pt-8 sm:mt-20 lg:mt-24">
                 <div class="text-md text-center text-white">
                     Copyright © 2024 . Crafted with
-                    <span class="text-gray-50">♥</span> by utkarss at
+                    <span class="text-gray-50">♥</span> by
                     <a rel="noopener" href="/">Innova Bharat.
                     </a>
                 </div>

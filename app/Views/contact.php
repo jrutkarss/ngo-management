@@ -11,8 +11,8 @@
                 <h2 class="text-2xl font-bold mb-4">Get in Touch</h2>
                 <div class="space-y-4 text-gray-600">
                     <div><strong>Address:</strong> Meerut, Uttar Pradesh, India</div>
-                    <div><strong>Phone:</strong> +91 98765 43210</div>
-                    <div><strong>Email:</strong> info@ngo.org</div>
+                    <div><strong>Phone:</strong> +91 98765 XXXXX</div>
+                    <div><strong>Email:</strong> info@janprakrati.org</div>
                 </div>
             </div>
             <div class="bg-white p-10 rounded-3xl shadow-lg">
