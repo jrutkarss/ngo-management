@@ -3,7 +3,7 @@
 
 <section class="py-24">
     <div class="container mx-auto px-6 max-w-3xl">
-        <h1 class="text-5xl font-black mb-6">Make a Donation</h1>
+        <h1 class="text-4xl font-black mb-6">Make a Donation</h1>
         <p class="text-lg text-gray-600 mb-10">Your support helps us deliver programs that change lives. Choose a giving option below.</p>
 
         <form action="<?= base_url('donate/create') ?>" method="post" class="space-y-6 bg-white p-10 rounded-3xl shadow-lg">

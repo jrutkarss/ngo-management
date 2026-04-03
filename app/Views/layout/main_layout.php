@@ -82,12 +82,12 @@
                     <a href="/about" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
                         <i class="fas fa-info-circle mr-3"></i>About
                     </a>
-                    <a href="/objectives" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
+                    <!-- <a href="/objectives" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
                         <i class="fas fa-bullseye mr-3"></i>Objectives
                     </a>
                     <a href="/president" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
                         <i class="fas fa-user-tie mr-3"></i>President
-                    </a>
+                    </a> -->
                     <a href="/team" class="block py-3 px-4 text-lg font-medium text-text-dark hover:text-leaf border-r-4 border-transparent hover:border-leaf transition-all">
                         <i class="fas fa-users mr-3"></i>Team
                     </a>
@@ -235,7 +235,7 @@
                             <i class="fas fa-chevron-right w-4"></i>
                             <span>Objectives</span>
                         </a></li>
-                        <li><a href="/president" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-2">
+                        <li><a href="/" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-2">
                             <i class="fas fa-chevron-right w-4"></i>
                             <span>President</span>
                         </a></li>

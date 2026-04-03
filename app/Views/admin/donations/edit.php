@@ -5,11 +5,11 @@
 <div class="container-fluid mt-4">
     <div class="row mb-4">
         <div class="col-md-6">
-            <h2><?= isset($donation) ? 'दान संपादित करें' : 'नया दान जोड़ें' ?></h2>
+            <h2><?= isset($donation) ? 'Edit Donation' : 'Add New Donation' ?></h2>
         </div>
         <div class="col-md-6 text-end">
             <a href="<?= base_url('admin/donations') ?>" class="btn btn-outline-secondary">
-                <i class="bi bi-arrow-left"></i> वापस जाएं
+                <i class="bi bi-arrow-left"></i> Back
             </a>
         </div>
     </div>
@@ -29,7 +29,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h5>दान विवरण</h5>
+                    <h5>Donation Details</h5>
                 </div>
                 <div class="card-body">
                     <form action="<?= isset($donation) 
@@ -38,12 +38,12 @@
                         
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label">दानकर्ता का नाम *</label>
+                                <label class="form-label">Donor Name *</label>
                                 <input type="text" class="form-control" name="donor_name" required
                                        value="<?= isset($donation) ? htmlspecialchars($donation['donor_name']) : '' ?>">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">ईमेल *</label>
+                                <label class="form-label">Email *</label>
                                 <input type="email" class="form-control" name="donor_email" required
                                        value="<?= isset($donation) ? htmlspecialchars($donation['donor_email']) : '' ?>">
                             </div>
@@ -51,12 +51,12 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label">फ़ोन नंबर</label>
+                                <label class="form-label">Phone Number</label>
                                 <input type="tel" class="form-control" name="donor_phone"
                                        value="<?= isset($donation) ? htmlspecialchars($donation['donor_phone'] ?? '') : '' ?>">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">राशि *</label>
+                                <label class="form-label">Amount *</label>
                                 <div class="input-group">
                                     <span class="input-group-text">₹</span>
                                     <input type="number" class="form-control" name="amount" required 
@@ -67,38 +67,38 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label">दान का प्रकार *</label>
+                                <label class="form-label">Donation Type *</label>
                                 <select class="form-select" name="donation_type" required>
-                                    <option value="">चुनें</option>
-                                    <option value="online" <?= (isset($donation) && $donation['donation_type'] === 'online') ? 'selected' : '' ?>>ऑनलाइन</option>
-                                    <option value="cash" <?= (isset($donation) && $donation['donation_type'] === 'cash') ? 'selected' : '' ?>>नकद</option>
-                                    <option value="cheque" <?= (isset($donation) && $donation['donation_type'] === 'cheque') ? 'selected' : '' ?>>चेक</option>
-                                    <option value="bank_transfer" <?= (isset($donation) && $donation['donation_type'] === 'bank_transfer') ? 'selected' : '' ?>>बैंक ट्रांसफर</option>
+                                    <option value="">Select</option>
+                                    <option value="online" <?= (isset($donation) && $donation['donation_type'] === 'online') ? 'selected' : '' ?>>Online</option>
+                                    <option value="cash" <?= (isset($donation) && $donation['donation_type'] === 'cash') ? 'selected' : '' ?>>Cash</option>
+                                    <option value="cheque" <?= (isset($donation) && $donation['donation_type'] === 'cheque') ? 'selected' : '' ?>>Cheque</option>
+                                    <option value="bank_transfer" <?= (isset($donation) && $donation['donation_type'] === 'bank_transfer') ? 'selected' : '' ?>>Bank Transfer</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">स्थिति *</label>
+                                <label class="form-label">Status *</label>
                                 <select class="form-select" name="status" required>
-                                    <option value="pending" <?= (isset($donation) && $donation['status'] === 'pending') ? 'selected' : '' ?>>लंबित</option>
-                                    <option value="verified" <?= (isset($donation) && $donation['status'] === 'verified') ? 'selected' : '' ?>>सत्यापित</option>
-                                    <option value="rejected" <?= (isset($donation) && $donation['status'] === 'rejected') ? 'selected' : '' ?>>अस्वीकृत</option>
+                                    <option value="pending" <?= (isset($donation) && $donation['status'] === 'pending') ? 'selected' : '' ?>>Pending</option>
+                                    <option value="verified" <?= (isset($donation) && $donation['status'] === 'verified') ? 'selected' : '' ?>>Verified</option>
+                                    <option value="rejected" <?= (isset($donation) && $donation['status'] === 'rejected') ? 'selected' : '' ?>>Rejected</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">उद्देश्य / विवरण</label>
+                            <label class="form-label">Purpose / Description</label>
                             <textarea class="form-control" name="description" rows="4"><?= isset($donation) ? htmlspecialchars($donation['description'] ?? '') : '' ?></textarea>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label">तरीका संदर्भ नंबर</label>
+                                <label class="form-label">Transaction Reference Number</label>
                                 <input type="text" class="form-control" name="transaction_id"
                                        value="<?= isset($donation) ? htmlspecialchars($donation['transaction_id'] ?? '') : '' ?>">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">दान की तारीख</label>
+                                <label class="form-label">Donation Date</label>
                                 <input type="date" class="form-control" name="donation_date"
                                        value="<?= isset($donation) ? date('Y-m-d', strtotime($donation['created_at'])) : date('Y-m-d') ?>">
                             </div>
@@ -108,16 +108,16 @@
                             <input class="form-check-input" type="checkbox" name="is_anonymous" id="is_anonymous"
                                    <?= (isset($donation) && $donation['is_anonymous']) ? 'checked' : '' ?>>
                             <label class="form-check-label" for="is_anonymous">
-                                गुमनाम दान
+                                Anonymous Donation
                             </label>
                         </div>
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-success">
-                                <i class="bi bi-save"></i> सहेजें
+                                <i class="bi bi-save"></i> Save
                             </button>
                             <a href="<?= base_url('admin/donations') ?>" class="btn btn-outline-secondary">
-                                रद्द करें
+                                Cancel
                             </a>
                         </div>
                     </form>
@@ -128,32 +128,32 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h5>सूचना</h5>
+                    <h5>Information</h5>
                 </div>
                 <div class="card-body">
                     <?php if(isset($donation)): ?>
                         <div class="mb-3">
-                            <label class="form-label"><strong>दान ID:</strong></label>
+                            <label class="form-label"><strong>Donation ID:</strong></label>
                             <p class="text-muted"><?= $donation['id'] ?></p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label"><strong>तारीख:</strong></label>
+                            <label class="form-label"><strong>Date:</strong></label>
                             <p class="text-muted"><?= date('d-m-Y H:i', strtotime($donation['created_at'])) ?></p>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label"><strong>अंतिम अपडेट:</strong></label>
+                            <label class="form-label"><strong>Last Updated:</strong></label>
                             <p class="text-muted"><?= date('d-m-Y H:i', strtotime($donation['updated_at'] ?? $donation['created_at'])) ?></p>
                         </div>
                         <?php if(!empty($donation['receipt_path'])): ?>
                             <div class="mb-3">
-                                <label class="form-label"><strong>रसीद:</strong></label>
+                                <label class="form-label"><strong>Receipt:</strong></label>
                                 <a href="<?= base_url($donation['receipt_path']) ?>" target="_blank" class="btn btn-sm btn-outline-primary w-100">
-                                    <i class="bi bi-download"></i> डाउनलोड करें
+                                    <i class="bi bi-download"></i> Download
                                 </a>
                             </div>
                         <?php endif; ?>
                     <?php else: ?>
-                        <p class="text-muted">नया दान जोड़ने के लिए विवरण भरें।</p>
+                        <p class="text-muted">Fill in the details to add a new donation.</p>
                     <?php endif; ?>
                 </div>
             </div>
