@@ -82,10 +82,10 @@ class Admin extends BaseController
         ];
 
         if ($this->memberModel->save($data)) {
-            return redirect()->to('admin/members')->with('success', 'पदनाम सदस्य सफलतापूर्वक जोड़ा गया');
+            return redirect()->to('admin/members')->with('success', 'Member added successfully');
         }
 
-        return redirect()->back()->with('error', 'त्रुटि: सदस्य जोड़ने में विफल');
+        return redirect()->back()->with('error', 'Error: Failed to add member');
     }
 
     public function editMember($id)
@@ -94,7 +94,7 @@ class Admin extends BaseController
         $data['designations'] = $this->designationModel->findAll();
         
         if (!$data['member']) {
-            return redirect()->to('admin/members')->with('error', 'सदस्य नहीं मिला');
+            return redirect()->to('admin/members')->with('error', 'Member not found');
         }
 
         return view('admin/members/edit', $data);
@@ -113,17 +113,17 @@ class Admin extends BaseController
         ];
 
         if ($this->memberModel->update($id, $data)) {
-            return redirect()->to('admin/members')->with('success', 'सदस्य जानकारी अपडेट की गई');
+            return redirect()->to('admin/members')->with('success', 'Member information updated');
         }
 
-        return redirect()->back()->with('error', 'त्रुटि: अपडेट विफल');
+        return redirect()->back()->with('error', 'Error: Update failed');
     }
 
     public function generateIdCard($id)
     {
         $member = $this->memberModel->find($id);
         if (!$member) {
-            return redirect()->back()->with('error', 'सदस्य नहीं मिला');
+            return redirect()->back()->with('error', 'Member not found');
         }
 
         // Generate QR code for member ID verification
@@ -131,7 +131,7 @@ class Admin extends BaseController
         
         // For now, return success message
         // In production, implement PDF generation for ID card
-        return redirect()->back()->with('success', 'ID कार्ड सफलतापूर्वक तैयार किया गया');
+        return redirect()->back()->with('success', 'ID card generated successfully');
     }
 
     public function blockMember($id)
@@ -139,9 +139,9 @@ class Admin extends BaseController
         $member = $this->memberModel->find($id);
         if ($member) {
             $this->memberModel->update($id, ['membership_status' => 'blocked']);
-            return redirect()->back()->with('success', 'सदस्य को ब्लॉक किया गया');
+            return redirect()->back()->with('success', 'Member blocked');
         }
-        return redirect()->back()->with('error', 'त्रुटि');
+        return redirect()->back()->with('error', 'Error');
     }
 
     public function unblockMember($id)
@@ -149,9 +149,9 @@ class Admin extends BaseController
         $member = $this->memberModel->find($id);
         if ($member) {
             $this->memberModel->update($id, ['membership_status' => 'active']);
-            return redirect()->back()->with('success', 'सदस्य को अनब्लॉक किया गया');
+            return redirect()->back()->with('success', 'Member unblocked');
         }
-        return redirect()->back()->with('error', 'त्रुटि');
+        return redirect()->back()->with('error', 'Error');
     }
 
     // ============ DONATION MANAGEMENT ============
@@ -193,10 +193,10 @@ class Admin extends BaseController
             // Send email
             $this->sendDonationEmail($donor_email, $donor_name, $amount, $purpose);
             
-            return redirect()->to('admin/donations')->with('success', 'दान सफलतापूर्वक दर्ज किया गया');
+            return redirect()->to('admin/donations')->with('success', 'Donation recorded successfully');
         }
 
-        return redirect()->back()->with('error', 'त्रुटि: दान सहेजने में विफल');
+        return redirect()->back()->with('error', 'Error: Failed to save donation');
     }
 
     // ============ EVENT MANAGEMENT ============
@@ -232,10 +232,10 @@ class Admin extends BaseController
         }
 
         if ($this->eventModel->save($eventData)) {
-            return redirect()->to('admin/events')->with('success', 'ईवेंट सफलतापूर्वक बनाया गया');
+            return redirect()->to('admin/events')->with('success', 'Event created successfully');
         }
 
-        return redirect()->back()->with('error', 'त्रुटि: इवेंट सहेजने में विफल');
+        return redirect()->back()->with('error', 'Error: Failed to save event');
     }
 
     // ============ NEWS MANAGEMENT ============
@@ -267,18 +267,18 @@ class Admin extends BaseController
         }
 
         if ($this->newsModel->save($newsData)) {
-            return redirect()->to('admin/news')->with('success', 'समाचार सफलतापूर्वक जोड़ा गया');
+            return redirect()->to('admin/news')->with('success', 'News added successfully');
         }
 
-        return redirect()->back()->with('error', 'त्रुटि: समाचार सहेजने में विफल');
+        return redirect()->back()->with('error', 'Error: Failed to save news');
     }
 
     public function deleteNews($id)
     {
         if ($this->newsModel->delete($id)) {
-            return redirect()->back()->with('success', 'समाचार हटाया गया');
+            return redirect()->back()->with('success', 'News deleted');
         }
-        return redirect()->back()->with('error', 'त्रुटि');
+        return redirect()->back()->with('error', 'Error');
     }
 
     // ============ CONTACT ENQUIRIES ============
@@ -312,7 +312,7 @@ class Admin extends BaseController
         // Send response email
         $this->sendEnquiryResponse($enquiry['email'], $enquiry['name'], $response);
 
-        return redirect()->to('admin/enquiries')->with('success', 'जवाब भेज दिया गया है');
+        return redirect()->to('admin/enquiries')->with('success', 'Response sent');
     }
 
     // ============ HELPER METHODS ============
@@ -351,15 +351,15 @@ class Admin extends BaseController
         $emailService = \Config\Services::email();
         $emailService->setTo($email);
         $emailService->setFrom('ngo@example.com', 'NGO Management System');
-        $emailService->setSubject('दान की रसीद - Donation Receipt');
+        $emailService->setSubject('Donation Receipt');
         
-        $message = "नमस्ते {$name},\n\n";
-        $message .= "आपके रु. {$amount} के दान के लिए धन्यवाद।\n";
+        $message = "Hello {$name},\n\n";
+        $message .= "Thank you for your donation of Rs. {$amount}.\n";
         if ($purpose) {
-            $message .= "उद्देश्य: {$purpose}\n";
+            $message .= "Purpose: {$purpose}\n";
         }
-        $message .= "\nआपकी रसीद संलग्न है।\n\n";
-        $message .= "धन्यवाद।";
+        $message .= "\nYour receipt is attached.\n\n";
+        $message .= "Thank you.";
         
         $emailService->setMessage($message);
         $emailService->send();
@@ -370,12 +370,12 @@ class Admin extends BaseController
         $emailService = \Config\Services::email();
         $emailService->setTo($email);
         $emailService->setFrom('ngo@example.com', 'NGO Management System');
-        $emailService->setSubject('आपकी पूछताछ का उत्तर - Enquiry Response');
+        $emailService->setSubject('Enquiry Response');
         
-        $message = "नमस्ते {$name},\n\n";
-        $message .= "आपकी पूछताछ के लिए धन्यवाद।\n\n";
-        $message .= "उत्तर:\n" . $response . "\n\n";
-        $message .= "धन्यवाद।";
+        $message = "Hello {$name},\n\n";
+        $message .= "Thank you for your enquiry.\n\n";
+        $message .= "Response:\n" . $response . "\n\n";
+        $message .= "Thank you.";
         
         $emailService->setMessage($message);
         $emailService->send();

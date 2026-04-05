@@ -8,7 +8,7 @@ class Member extends BaseController
 {
     public function dashboard()
     {
-        if (! session()->get('is_logged_in')) {
+        if (! session()->get('isLoggedIn')) {
             return redirect()->to('/member/login')->with('error', 'Please login first.');
         }
 
@@ -20,7 +20,7 @@ class Member extends BaseController
 
     public function downloadIdCard()
     {
-        if (! session()->get('is_logged_in')) {
+        if (! session()->get('isLoggedIn')) {
             return redirect()->to('/member/login')->with('error', 'Please login first.');
         }
 
